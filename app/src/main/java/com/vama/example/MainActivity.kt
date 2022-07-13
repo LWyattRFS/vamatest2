@@ -19,8 +19,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView!!.adapter = imagesAdapter
         recyclerView!!.layoutManager = LinearLayoutManager(this);
         recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                viewModel.nextPage()
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    viewModel.nextPage()
+                }
             }
         })
 
